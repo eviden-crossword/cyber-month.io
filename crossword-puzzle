@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossword Puzzle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .crossword-container {
+            position: relative;
+            width: 480px;
+            height: 540px;
+            background-image: url('https://raw.githubusercontent.com/anupgihub/crossword-puzzle/main/background%20puzzle.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .crossword {
+            display: grid;
+            grid-template-columns: repeat(16, 28px);
+            grid-template-rows: repeat(18, 28px);
+            gap: 1px;
+        }
+        .crossword input {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            font-size: 14px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            text-transform: uppercase;
+            position: relative;
+            background-color: transparent;
+        }
+        .filled {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            position: relative;
+        }
+        .correct {
+            background-color: #ff6d43;
+        }
+        .incorrect {
+            background-color: #002d3c;
+        }
+        .number {
+            position: absolute;
+            font-size: 10px;
+            top: 0px;
+            left: 2px;
+            color: #000;
+        }
+  #success-message {
+        display: none;
+        font-size: 24px;
+        color: green;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+    <div class="crossword-container">
+        <div class="crossword" id="crossword">
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="a"><div class="number">3</div></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="y"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="e"><div class="number">4</div></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="m"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="p"><div class="number">6</div></div><div class="filled"><input type="text" maxlength="1" data-answer="r"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"><input type="text" maxlength="1" data-answer="v"></div><div class="filled"><input type="text" maxlength="1" data-answer="a"></div><div class="filled"><input type="text" maxlength="1" data-answer="c"></div><div class="filled"><input type="text" maxlength="1" data-answer="y"></div><div class="filled"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="z"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="r"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="h"><div class="number">5</div></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="l"><div class="number">2</div></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="a"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="y"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="t"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="p"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="m"></div><div class="filled"></div>
+            <div class="filled"><input type="text" maxlength="1" data-answer="p"><div class="number">7</div></div><div class="filled"><input type="text" maxlength="1" data-answer="s"><div class="number">1</div></div><div class="filled"><input type="text" maxlength="1" data-answer="e"></div><div class="filled"><input type="text" maxlength="1" data-answer="u"></div><div class="filled"><input type="text" maxlength="1" data-answer="d"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"><input type="text" maxlength="1" data-answer="y"></div><div class="filled"><input type="text" maxlength="1" data-answer="m"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"><input type="text" maxlength="1" data-answer="z"></div><div class="filled"><input type="text" maxlength="1" data-answer="a"></div><div class="filled"><input type="text" maxlength="1" data-answer="t"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div>
+            <div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="m"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="k"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="m"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="p"><div class="number">8</div></div><div class="filled"><input type="text" maxlength="1" data-answer="e"></div><div class="filled"><input type="text" maxlength="1" data-answer="t"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="o"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="c"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="n"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="r"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="g"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="p"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="h"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="i"></div><div class="filled"></div>
+            <div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"></div><div class="filled"><input type="text" maxlength="1" data-answer="c"></div><div class="filled"></div>
+        </div>
+    </div>
+<div id="success-message">Success! Congratulations from Eviden Cybesecurity</div>
+
+    <script>
+function checkCompletion() {
+    let allCorrect = true;
+    document.querySelectorAll('.crossword input').forEach(input => {
+        if (input.value.toLowerCase() !== input.getAttribute('data-answer')) {
+            allCorrect = false;
+        }
+    });
+    return allCorrect;
+}
+
+document.querySelectorAll('.crossword input').forEach(input => {
+    input.addEventListener('input', function() {
+        if (this.value === "") {
+            this.style.backgroundColor = "transparent";
+            this.style.color = "black";  // Reset font color to black
+        } else if (this.value.toLowerCase() === this.getAttribute('data-answer')) {
+            this.style.backgroundColor = "#ff6d43";
+            this.style.color = "black";  // Correct answer font color remains black
+        } else {
+            this.style.backgroundColor = "#002d3c";
+            this.style.color = "white";  // Incorrect answer font color set to white
+        }
+
+        if (checkCompletion()) {
+            document.getElementById('success-message').style.display = 'block';
+        } else {
+            document.getElementById('success-message').style.display = 'none';
+        }
+    });
+});
+    </script>
+</body>
+</html>
